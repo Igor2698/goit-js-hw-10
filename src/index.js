@@ -20,7 +20,7 @@ const loading = document.querySelector('.loader')
 const body = document.querySelector('body')
 const div = document.querySelector('.cat-info');
 const select = document.querySelector('.breed-select');
-
+let library = ''
 
 
 init();
@@ -49,6 +49,7 @@ function renderBreedOptions(data) {
 
     select.innerHTML = markup;
     const choices = new Choices(select);
+    library = document.querySelector('.choices')
 
 
 }
@@ -90,6 +91,9 @@ function toggleLoading(isLoading) {
     if (isLoading) {
         div.style.display = 'none';
         loading.style.display = 'inline-block';
+        if (library) {
+            library.hidden = true;
+        }
 
 
 
@@ -98,12 +102,10 @@ function toggleLoading(isLoading) {
         div.style.display = 'flex';
         loading.style.display = 'none';
         select.style.display = 'block';
-        
-
-
+        if (library) {
+            library.hidden = false;
+        }
     }
-
-
 }
 
 function itIsError(error) {
