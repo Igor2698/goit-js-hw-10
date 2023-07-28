@@ -49,7 +49,7 @@ function renderBreedOptions(data) {
 
     select.innerHTML = markup;
     const choices = new Choices(select);
-    
+
 
 }
 
@@ -90,7 +90,7 @@ function toggleLoading(isLoading) {
     if (isLoading) {
         div.style.display = 'none';
         loading.style.display = 'inline-block';
-        library.classList.add('hide')
+
 
 
     }
@@ -98,7 +98,7 @@ function toggleLoading(isLoading) {
         div.style.display = 'flex';
         loading.style.display = 'none';
         select.style.display = 'block';
-        library.hidden = false;
+        
 
 
     }
