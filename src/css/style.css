@@ -10,7 +10,7 @@
     position: relative;
     transform: rotate(-45deg);
     box-sizing: border-box;
-    
+
 
 }
 
@@ -88,6 +88,10 @@ body {
 
 .choices__inner {
     background-color: aliceblue;
+}
+
+.choices__inner.hide {
+    display: none;
 }
 
 
