@@ -1,36 +1,29 @@
-const api_key = "live_sPwmyGHyrSZLuNUSNFtWTTQQMcW9qTi8Uy6YzTc3yFDCCxraXIV38rVhLJW9Pzpb"
+// Імпортував бібліотеку axios
+import axios from 'axios';
+// Імпортував ключі для функцій getBreeds і getCat
+import keys from './keys';
 
-export function fetchBreeds() {
+const headers = {
+  'x-api-key': keys.api_key,
+};
 
-
-    return fetch(`https://api.thecatapi.com/v1/breeds`, {
-        headers: {
-            'x-api-key': api_key
-        }
-    }).then(
-        (response) => {
-            if (!response.ok) {
-                throw new Error(response.status);
-            }
-            return response.json();
-        }
-    );
+// Отримаємо проміс з елементами порід
+export function getBreeds() {
+  return axios
+    .get(`${keys.BASE_URL}breeds`, { headers })
+    .then(response => {
+      return response.data;
+    })
+    .catch(error => {
+      console.log(error);
+    });
 }
 
-export function fetchPosts(catId) {
-
-
-    return fetch(`https://api.thecatapi.com/v1/images/search?breed_ids=${catId}`,
-        {
-            headers: {
-                'x-api-key': api_key
-            }
-        }).then(
-            (response) => {
-                if (!response.ok) {
-                    throw new Error(response.status);
-                }
-                return response.json();
-            }
-        );
+// Отримаємо проміс з об'єктом породи
+export function getCat(catId) {
+  return axios
+    .get(`${keys.BASE_URL}images/search?breed_ids=${catId}`, { headers })
+    .then(response => {
+      return response.data;
+    });
 }
