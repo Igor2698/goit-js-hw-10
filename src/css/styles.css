@@ -71,3 +71,58 @@ button[data-start][disabled] {
   font-size: 14px;
   color: #666;
 }
+
+.form {
+  max-width: 400px;
+  margin: 20px auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+input[type='number'],
+input[type='radio'] {
+  margin-right: 5px;
+}
+
+fieldset {
+  margin-bottom: 20px;
+}
+
+legend {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+button {
+  background-color: #3498db;
+  color: white;
+  padding: 10px 15px;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #2980b9;
+}
+
+input:required {
+  border: 1px solid #4de73c;
+}
+
+input[type='radio'] {
+  vertical-align: middle;
+}
+
+.form:valid {
+  border-color: #4caf50;
+}
