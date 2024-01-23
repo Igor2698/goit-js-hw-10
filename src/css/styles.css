@@ -35,6 +35,12 @@
   margin-bottom: 10px;
 }
 
+#datetime-picker[disabled] {
+  background-color: #ccc;
+  color: #666;
+  cursor: not-allowed;
+}
+
 button[data-start] {
   background-color: #4caf50;
   color: white;

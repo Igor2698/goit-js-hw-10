@@ -4,11 +4,12 @@ import "flatpickr/dist/flatpickr.min.css";
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
 
+const input = document.querySelector('#datetime-picker')
 const startButton = document.querySelector('button[data-start]');
 const daysDisplay = document.querySelector('.value[data-days]');
 const hoursDisplay = document.querySelector('.value[data-hours]');
-const minuteDisplay = document.querySelector('.value[data-minutes]');
-const secondDisplay = document.querySelector('.value[data-seconds]');
+const minutesDisplay = document.querySelector('.value[data-minutes]');
+const secondsDisplay = document.querySelector('.value[data-seconds]');
 
 
 let userSelectedDate;
@@ -50,6 +51,8 @@ startButton.addEventListener('click', onStartButtonClick);
 
 function onStartButtonClick() {
     startButton.disabled = true;
+    input.disabled = true;
+
     intervalId = setInterval(launchTimer, 1000);
 }
 
@@ -57,23 +60,10 @@ function onStartButtonClick() {
 function launchTimer() {
 
     const differenceTime = userSelectedDate - new Date();
-
-    if (differenceTime < 0) {
-        resetTimer();
-        return
-    }
     const timeObj = convertMs(differenceTime);
     updateDisplay(timeObj);
 }
 
-
-function resetTimer() {
-    daysDisplay.textContent = '00';
-    hoursDisplay.textContent = '00';
-    minuteDisplay.textContent = '00';
-    secondDisplay.textContent = '00';
-    clearInterval(intervalId);
-}
 
 function convertMs(ms) {
     const second = 1000;
@@ -94,12 +84,12 @@ function addLeadingZero(value) {
 function updateDisplay({ days, hours, minutes, seconds }) {
     daysDisplay.textContent = addLeadingZero(days);
     hoursDisplay.textContent = addLeadingZero(hours);
-    minuteDisplay.textContent = addLeadingZero(minutes);
-    secondDisplay.textContent = addLeadingZero(seconds);
+    minutesDisplay.textContent = addLeadingZero(minutes);
+    secondsDisplay.textContent = addLeadingZero(seconds);
 }
 
 const iziInfo = (title, message) => {
-    iziToast.info({
+    iziToast.error({
         title,
         message,
         position: 'topCenter',
