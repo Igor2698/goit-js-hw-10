@@ -6,11 +6,11 @@ const delayInput = form.elements.delay;
 
 form.addEventListener('submit', onSubmit);
 
-function onSubmit(ev) {
-    ev.preventDefault();
+function onSubmit(event) {
+    event.preventDefault();
     const delay = Number(delayInput.value);
-    const checkedInput = document.querySelector('input[name="state"]:checked');
-    const state = checkedInput.value;
+    const stateRadioButton = document.querySelector('input[name="state"]:checked');
+    const state = stateRadioButton.value;
 
     const delayMessage = `promise in ${delay}ms`;
 

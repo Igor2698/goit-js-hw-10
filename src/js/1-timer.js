@@ -13,6 +13,7 @@ const secondsDisplay = document.querySelector('.value[data-seconds]');
 
 
 let userSelectedDate;
+let intervalId;
 
 startButton.disabled = true;
 
@@ -47,13 +48,14 @@ function onStartButtonClick() {
     startButton.disabled = true;
     input.disabled = true;
 
-    setInterval(launchTimer, 1000);
+    intervalId = setInterval(launchTimer, 1000);
 }
 
 
 function launchTimer() {
     const differenceTime = userSelectedDate - new Date();
     if (differenceTime < 0) {
+        clearInterval(intervalId);
         return
     }
     const timeObj = convertMs(differenceTime);
