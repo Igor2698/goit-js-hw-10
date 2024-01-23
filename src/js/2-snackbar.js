@@ -8,7 +8,7 @@ form.addEventListener('submit', onSubmit);
 
 function onSubmit(ev) {
     ev.preventDefault();
-    const delay = delayInput.value;
+    const delay = Number(delayInput.value);
     const checkedInput = document.querySelector('input[name="state"]:checked');
     const state = checkedInput.value;
 
@@ -20,13 +20,13 @@ function onSubmit(ev) {
         title: 'Resolved',
         message: value,
         position: 'topRight',
-        timeout: delay,
+
     }))
         .catch(error => iziToast.error({
             title: 'Rejected',
             message: error,
             position: 'topRight',
-            timeout: delay,
+
         }))
 }
 

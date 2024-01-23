@@ -47,7 +47,7 @@ function onStartButtonClick() {
     startButton.disabled = true;
     input.disabled = true;
 
-    intervalId = setInterval(launchTimer, 1000);
+    setInterval(launchTimer, 1000);
 }
 
 
