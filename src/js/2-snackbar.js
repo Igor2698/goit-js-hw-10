@@ -2,32 +2,32 @@ import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
 
 const form = document.querySelector('.form');
-
+const delayInput = form.elements.delay;
 
 form.addEventListener('submit', onSubmit);
+
 function onSubmit(ev) {
     ev.preventDefault();
+    const delay = delayInput.value;
     const checkedInput = document.querySelector('input[name="state"]:checked');
-
-    const delay = form.elements.delay.value;
     const state = checkedInput.value;
 
-    const delayMessage = `promise in ${delay}ms`
+    const delayMessage = `promise in ${delay}ms`;
 
-    const handleFulfilled = () => Promise.resolve(`✅ Fulfilled ${delayMessage}`).then(value => iziToast.success({
+    const promise = new Promise((resolve, reject) => setTimeout(() => state === 'fulfilled' ? resolve(`✅ Fulfilled ${delayMessage}`) : reject(`❌ Rejected ${delayMessage}`), delay));
+
+    promise.then(value => iziToast.success({
         title: 'Resolved',
         message: value,
-        position: 'topCenter',
-        timeout: 2000,
-    }));
-    const handleRejected = () => Promise.reject(`❌ Rejected ${delayMessage}`).then(() => console.log('alall')).catch(error => iziToast.error({
-        title: 'Rejected',
-        message: error,
-        position: 'topCenter',
-        timeout: 2000,
-    }));
-
-    setTimeout(state === 'fulfilled' ? handleFulfilled : handleRejected, delay);
+        position: 'topRight',
+        timeout: delay,
+    }))
+        .catch(error => iziToast.error({
+            title: 'Rejected',
+            message: error,
+            position: 'topRight',
+            timeout: delay,
+        }))
 }
 
 

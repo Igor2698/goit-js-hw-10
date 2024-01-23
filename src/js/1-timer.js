@@ -13,9 +13,8 @@ const secondsDisplay = document.querySelector('.value[data-seconds]');
 
 
 let userSelectedDate;
-let intervalId = 0;
 
-
+startButton.disabled = true;
 
 const options = {
     enableTime: true,
@@ -26,11 +25,6 @@ const options = {
         userSelectedDate = selectedDates[0];
         handleDateSelection(userSelectedDate);
     },
-    onReady() {
-        startButton.disabled = true;
-    },
-
-
 };
 
 flatpickr("#datetime-picker", options);
@@ -39,7 +33,7 @@ function handleDateSelection(selectedDate) {
     const timeDifference = userSelectedDate - new Date();
 
     if (timeDifference <= 0) {
-        iziInfo('Change your choice', 'Please choose a date in the future')
+        iziToastMessage('Change your choice', 'Please choose a date in the future')
         startButton.disabled = true;
     }
     else {
@@ -58,8 +52,10 @@ function onStartButtonClick() {
 
 
 function launchTimer() {
-
     const differenceTime = userSelectedDate - new Date();
+    if (differenceTime < 0) {
+        return
+    }
     const timeObj = convertMs(differenceTime);
     updateDisplay(timeObj);
 }
@@ -88,7 +84,7 @@ function updateDisplay({ days, hours, minutes, seconds }) {
     secondsDisplay.textContent = addLeadingZero(seconds);
 }
 
-const iziInfo = (title, message) => {
+const iziToastMessage = (title, message) => {
     iziToast.error({
         title,
         message,
